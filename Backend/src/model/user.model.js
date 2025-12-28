@@ -21,4 +21,5 @@ const userSchema = new mongoose.Schema({
     } 
 }, {timestamps: true}); //created at and updated at feilds will be added automatically
 
-export const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+export default User;
