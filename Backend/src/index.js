@@ -4,6 +4,7 @@ import connectDB from "./config/db.js";
 import {clerkMiddleware} from "@clerk/express";
 import {serve} from "inngest/express";
 import {inngest, functions} from "./config/inngest.js";
+import chatRoutes from "./routes/chat.route.js";
 
 dotenv.config();
 const app = express();
@@ -12,6 +13,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json()); //for parsing the request body
 app.use(clerkMiddleware()); //res.auth will be available in res object
 app.use("/api/inngest", serve({ client: inngest, functions }));
+app.use("/api/chat",  chatRoutes ); 
 
 
 app.get('/', (req,res)=>{
