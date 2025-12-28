@@ -1,6 +1,10 @@
 import { Inngest } from "inngest";
 import connectDB from "../config/db.js";
 import User from "../model/user.model.js";
+
+// Create a client to send and receive events
+export const inngest = new Inngest({ id: "agni" });
+
 const syncUser = inngest.createFunction(
     {id: "sync-user"},
     {event: "clerk/user.created"},
@@ -26,8 +30,7 @@ const deleteUserFromDB = inngest.createFunction(
     //Todo things here 
 );
 
-// Create a client to send and receive events
-export const inngest = new Inngest({ id: "agni" });
+
 
 // Create an empty array where we'll export future Inngest functions
 export const functions = [syncUser, deleteUserFromDB];
